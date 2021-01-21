@@ -1,4 +1,4 @@
-package com.example.demo;
+package de.gedoplan.demo.jms;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
@@ -11,13 +11,13 @@ import org.springframework.jms.core.JmsTemplate;
 import javax.jms.ConnectionFactory;
 
 @Configuration
-public class TopicContainer {
+public class JMSConfig {
 
     @Bean
     public JmsTemplate topicTemplate(@Qualifier("jmsConnectionFactory") ConnectionFactory connectionFactory) {
         JmsTemplate jmsTemplate = new JmsTemplate();
         jmsTemplate.setConnectionFactory(connectionFactory);
-        jmsTemplate.setPubSubDomain(false);
+        jmsTemplate.setPubSubDomain(true);
         return jmsTemplate;
     }
 
@@ -25,7 +25,7 @@ public class TopicContainer {
     public JmsTemplate queueTemplate(@Qualifier("jmsConnectionFactory") ConnectionFactory connectionFactory) {
         JmsTemplate jmsTemplate = new JmsTemplate();
         jmsTemplate.setConnectionFactory(connectionFactory);
-        jmsTemplate.setPubSubDomain(true);
+        jmsTemplate.setPubSubDomain(false);
         return jmsTemplate;
     }
 

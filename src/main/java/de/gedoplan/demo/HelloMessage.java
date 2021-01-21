@@ -1,4 +1,4 @@
-package com.example.demo;
+package de.gedoplan.demo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,13 +1,14 @@
-package com.example.demo;
+package de.gedoplan.demo.jms;
 
+import de.gedoplan.demo.HelloMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 
-@RestController()
-@RequestMapping("demo")
+@RestController("jms")
+@RequestMapping("demo/jms")
 public class HelloWorld {
 
     @Autowired()
@@ -23,15 +24,15 @@ public class HelloWorld {
         return new HelloMessage("Hello World");
     }
 
-    @PostMapping(path = "t")
+    @PostMapping(path = "q")
     public ResponseEntity postHelloToOne(@RequestBody String msg){
-        jmsTopic.convertAndSend("demo", new HelloMessage(msg));
+        jmsQueue.convertAndSend("demo", new HelloMessage(msg));
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping(path = "q")
+    @PostMapping(path = "t")
     public ResponseEntity postHelloToAll(@RequestBody String msg){
-        jmsQueue.convertAndSend("demo", new HelloMessage(msg));
+        jmsTopic.convertAndSend("demo", new HelloMessage(msg));
         return ResponseEntity.ok().build();
     }
 

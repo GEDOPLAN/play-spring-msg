@@ -1,0 +1,17 @@
+= Playground Spring Messaging
+
+== Run
+
+_run local rabbit_
+[source, shell]
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+
+_run as docker_
+[source, shell]
+mvn install
+
+[source, shell]
+docker run play-spring-msg
+
+_or use main class_
+link:src/main/java/de/gedoplan/demo/DemoApplication.java[]

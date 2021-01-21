@@ -1,4 +1,4 @@
 spring:
   activemq:
     packages:
-      trusted: com.example
+      trusted: de.gedoplan
